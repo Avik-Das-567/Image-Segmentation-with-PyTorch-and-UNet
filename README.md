@@ -1,14 +1,14 @@
 # Human Image Segmentation with PyTorch and U-Net
 
-## Project Overview
+## Overview
 
 This project implements a deep learning pipeline for binary human image segmentation using PyTorch. The objective is to train a convolutional neural network that receives an RGB image as input and predicts a pixel-level foreground mask identifying the human region in the image.
 
-The project follows the workflow from **Deep Learning with PyTorch: Image Segmentation** and is implemented in the notebook [`image_segmentation_with_pytorch.ipynb`](image_segmentation_with_pytorch.ipynb). The notebook covers the full segmentation lifecycle: loading an image-mask dataset, preparing synchronized augmentations, defining a custom PyTorch dataset, batching samples with `DataLoader`, building a pretrained U-Net model, training with segmentation-specific losses, saving the best checkpoint, and visualizing model predictions on validation samples.
+The project covers the full segmentation lifecycle: loading an image-mask dataset, preparing synchronized augmentations, defining a custom PyTorch dataset, batching samples with `DataLoader`, building a pretrained U-Net model, training with segmentation-specific losses, saving the best checkpoint, and visualizing model predictions on validation samples.
 
 The task is a binary semantic segmentation problem. Each input image has a corresponding ground-truth mask where foreground pixels represent the human subject and background pixels represent the non-human region. The model predicts a single-channel logit map, which is converted into a binary mask during inference.
 
-## Learning Objectives
+## Objectives
 
 - Understand the structure of an image-mask segmentation dataset.
 - Use Albumentations to apply spatial augmentations consistently to images and masks.
@@ -210,8 +210,8 @@ This produces a binary predicted mask where pixels above the threshold are treat
 
 ## Results and Observations
 
-The notebook demonstrates that a pretrained U-Net can learn the human segmentation task effectively from a relatively small image-mask dataset. The model improves substantially during early training, and the validation loss reaches its best recorded value of `0.14957228675484657` at epoch `15`.
+- The notebook demonstrates that a pretrained U-Net can learn the human segmentation task effectively from a relatively small image-mask dataset. The model improves substantially during early training, and the validation loss reaches its best recorded value of `0.14957228675484657` at epoch `15`.
 
-The inference visualizations compare predicted masks against ground-truth masks for multiple validation indices, including `38`, `3`, `14`, `18`, `35`, and `49`. These visual checks provide qualitative confirmation that the trained model is producing foreground masks from RGB input images.
+- The inference visualizations compare predicted masks against ground-truth masks for multiple validation indices, including `38`, `3`, `14`, `18`, `35`, and `49`. These visual checks provide qualitative confirmation that the trained model is producing foreground masks from RGB input images.
 
-The notebook reports loss values only, so the README does not claim additional metrics such as IoU, Dice coefficient, precision, recall, or pixel accuracy. The documented results are therefore based on the observed training and validation losses and the qualitative image-mask-prediction visualizations produced in the notebook.
+- The recorded training history and validation visualizations show the complete behavior of the implemented pipeline: loss-based model selection during training and qualitative mask comparison during inference. Together, these outputs demonstrate how the trained U-Net converts RGB validation images into binary foreground masks that can be compared directly with the provided ground-truth annotations.
